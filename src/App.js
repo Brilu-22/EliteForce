@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./pages/home/Home";
+import Login from "./pages/login/Login";
+import Compare from "./pages/comparedata/Compare";
+import Single from "./pages/single/Single";
+import Timeline from "./pages/timeline/Timeline";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section className="hero">
+      <div className="App">
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="login" element={<Login />} />
+            <Route path="compare">
+              <Route index element={<Compare />} />
+              <Route path=":playerId" element={<Single />} />
+            </Route>
+            <Route path="timeline">
+              <Route index element={<Timeline />} />
+              <Route path=":teamId" element={<Single />} />
+            </Route>
+          </Routes>
+        </Router>
+      </div>
+    </section>
   );
 }
 
